@@ -1,6 +1,7 @@
 package com.backend.facturationsystem.models.services;
 
 import com.backend.facturationsystem.models.entities.Client;
+import com.backend.facturationsystem.models.entities.Region;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -13,6 +14,6 @@ public interface ClientServices {
     public Client findClientById(Long id);
     public  Client saveClient(Client client);
     public void deleteClientById(Long id);
-
+    List<Region> findAllRegions();
 
 }

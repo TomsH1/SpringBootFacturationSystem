@@ -1,8 +1,8 @@
 package com.backend.facturationsystem.models.services;
 
 import com.backend.facturationsystem.models.entities.Client;
+import com.backend.facturationsystem.models.entities.Region;
 import com.backend.facturationsystem.models.repositories.ClientRepository;
-import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
 @Service
 public class ClientServicesImp implements ClientServices{
     @Autowired
@@ -18,12 +19,12 @@ public class ClientServicesImp implements ClientServices{
     @Override
     @Transactional(readOnly = true)
     public Page<Client> clientPager(Pageable pageable) {
-        return repository.findAll(pageable);
+        return this.repository.findAll(pageable);
     }
 
     @Override
     public List<Client> findAllClients() {
-        return (List<Client>) repository.findAll();
+        return repository.findAll();
     }
 
     @Override
@@ -39,5 +40,11 @@ public class ClientServicesImp implements ClientServices{
     @Override
     public void deleteClientById(Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Region> findAllRegions() {
+        return repository.findAllRegions();
     }
 }
